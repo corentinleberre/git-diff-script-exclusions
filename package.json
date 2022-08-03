@@ -1,7 +1,12 @@
 {
-    "name": "node-starter",
-    "version": "0.0.0",
-    "scripts": {
-      "dev": "node index.js"
-    }
+  "name": "git-diff-script-exclusions",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node exception.js",
+    "prettify": "prettier --write ."
+  },
+  "dependencies": {
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.0"
   }
+}

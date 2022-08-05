@@ -1,12 +1,18 @@
+import replace from "rollup-plugin-replace";
 import { terser } from "rollup-plugin-terser";
 
 export default {
-    input: 'src/exception.js',
-    plugins: [
-      terser()
-    ],
-    output: {
-      file: 'dist/exception.js',
-      format: 'cjs'
-    }
+  input: "src/exception.js",
+  plugins: [
+    terser(),
+    replace({
+      delimiters: ["", ""],
+      "#!/usr/bin/env node": "",
+    }),
+  ],
+  output: {
+    file: "dist/exception.js",
+    banner: "#!/usr/bin/env node",
+    format: "cjs",
+  },
 };

@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node exception.js",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "build": "rollup -c"
   },
+  "files": [
+    "dist/exception.js"
+  ],
   "dependencies": {
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.63.0",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

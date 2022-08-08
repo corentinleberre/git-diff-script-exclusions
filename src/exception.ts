@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-const { exec } = require("child_process");
-const fs = require("fs");
+import { exec } from "child_process";
+import * as fs from "fs";
 
 const [SHA1, SHA2] = process.argv.slice(2, 4);
 
 console.log("new commit: ", SHA1, "compare to: ", SHA2);
 
-const getExceptionsConf = () =>
-  JSON.parse(fs.readFileSync("./exceptions.conf.json"));
+const getExceptionsConf = (): { exceptions: Array<string> } =>
+  JSON.parse(fs.readFileSync("./exceptions.conf.json").toString());
 
 exec(
   `git diff --name-only ${SHA1 ?? ""} ${SHA2 ?? ""}`,
   (error, stdout, stderr) => {
     if (error || stderr)
-      console.log(`error: ${error.message}\nstderr: ${stderr}`);
+      console.log(`error: ${error?.message}\nstderr: ${stderr}`);
     if (stdout) {
       const files = stdout.toString().split("\n");
       const modifiedFilesInNewestCommit = files

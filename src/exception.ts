@@ -61,7 +61,6 @@ const exception = (SHA_ARRAY: Array<string>): void => {
             );
             const result = { modifiedFilesInNewestCommit, onlyExceptions };
             console.log(result, "\n");
-            process.exitCode = result.onlyExceptions ? -1 : 0;
           }
         }
       }

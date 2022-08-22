@@ -2,7 +2,7 @@
 
 import { exec } from "child_process";
 import * as fs from "fs";
-import { compareArrays, ScriptConfiguration } from "./utils";
+import { comparePrimitiveArrays, ScriptConfiguration } from "./utils";
 
 const exception = (SHA_ARRAY: Array<string>): void => {
   const [SHA1, SHA2] = SHA_ARRAY;
@@ -51,12 +51,12 @@ const exception = (SHA_ARRAY: Array<string>): void => {
 
             const onlyExceptions = modifiedFilesInNewestCommit.every((path) =>
               exceptions.some((exception) => {
-                if (exception.at(-1) === "*")
-                  return compareArrays(
+                if (exception[exception.length - 1] === "*")
+                  return comparePrimitiveArrays(
                     exception.slice(0, exception.length - 1),
                     path.slice(0, exception.length - 1)
                   );
-                return compareArrays(exception, path);
+                return comparePrimitiveArrays(exception, path);
               })
             );
             const result = { modifiedFilesInNewestCommit, onlyExceptions };

@@ -1,7 +1,4 @@
 {
-  "version": "2.0.3",
-  "exceptions": [
-    "docs/*",
-    "exceptions.conf.json"
-  ]
+  "version": "3.0.0",
+  "exceptions": ["docs/*", "exceptions.conf.json"]
 }

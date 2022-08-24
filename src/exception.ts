@@ -4,15 +4,9 @@ import { exec } from "child_process";
 import * as fs from "fs";
 import { comparePrimitiveArrays, ScriptConfiguration } from "./utils";
 
-const exception = (SHA_ARRAY: Array<string>): void => {
-  const [SHA1, SHA2] = SHA_ARRAY;
-
-  if (SHA1) {
-    if (SHA2) console.log(`INFO : Comparing : ${SHA1} to : ${SHA2}\n`);
-    else console.log(`INFO : Comparing local modifications to : ${SHA1}\n`);
-  } else {
-    console.log("INFO : Comparing local modifications to HEAD\n");
-  }
+const exception = (SOURCE: string, TARGET: string): void => {
+  console.log(`INFO : Comparing : ${SOURCE} to : ${TARGET}\n`);
+  if (SOURCE === TARGET) return;
 
   const getExceptionsConf = (): ScriptConfiguration => {
     try {
@@ -36,7 +30,7 @@ const exception = (SHA_ARRAY: Array<string>): void => {
 
   if (exceptionsConf?.exceptions?.length > 0) {
     exec(
-      `git diff --name-only ${SHA1 ?? ""} ${SHA2 ?? ""}`,
+      `git diff --name-only ${SOURCE} ${TARGET}`,
       (error, stdout, stderr) => {
         if (error || stderr)
           console.log(`error: ${error?.message}\nstderr: ${stderr}`);

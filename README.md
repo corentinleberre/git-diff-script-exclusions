@@ -18,7 +18,6 @@ Exceptions are stored in the file `exceptions.conf.json`. It follow the format b
 
 ```json
     {
-    "version": "3.0.0",
     "exceptions": [
             "docs/*",
             "exceptions.conf.json"

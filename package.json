@@ -1,6 +1,6 @@
 {
   "name": "git-diff-script-exclusions",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "dev": "ts-node src/main.ts",
     "prettify": "prettier --write .",
@@ -25,5 +25,6 @@
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
-  }
+  },
+  "license": "MIT"
 }

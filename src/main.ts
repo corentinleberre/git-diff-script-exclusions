@@ -5,7 +5,7 @@ const program = new Command();
 
 program
   .name("git-diff-script-exclusions")
-  .version("3.0.0", "-v, --vers", "output the current version")
+  .version("3.0.1", "-v, --vers", "output the current version")
   .description(
     "Compare two commits and determinate if modified files are strictly limited to path configured\n\n  > See README.md for configuration details"
   )

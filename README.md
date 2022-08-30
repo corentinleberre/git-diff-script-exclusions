@@ -14,13 +14,13 @@ This tool has to be used in a git repo.
 
 ### Configure :
 
-Exceptions are stored in the file `exceptions.conf.json`. It follow the format below :
+Exceptions are stored in the file `git-diff-script-exclusions.conf.json`. It follow the format below :
 
 ```json
     {
     "exceptions": [
             "docs/*",
-            "exceptions.conf.json"
+            "git-diff-script-exclusions.conf.json"
             "src/ressource/application.yml"
         ]
     }
@@ -57,11 +57,11 @@ The CLI will return :
 INFO : Comparing : my_feature to : main
 
 Exceptions configured :
- [ [ 'docs', '*' ], [ 'exceptions.conf.json' ] ]
+ [ [ 'docs', '*' ], [ 'git-diff-script-exclusions.conf.json' ] ]
 
 {
   modifiedFilesInNewestCommit: [
-    [ 'exceptions.conf.json' ],
+    [ 'git-diff-script-exclusions.conf.json' ],
     [ 'docs/my_doc.md' ]
   ],
   onlyExceptions: true

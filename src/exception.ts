@@ -11,7 +11,7 @@ const exception = (SOURCE: string, TARGET: string): void => {
   const getExceptionsConf = (): ScriptConfiguration => {
     try {
       const fileContents = JSON.parse(
-        fs.readFileSync("./exceptions.conf.json").toString()
+        fs.readFileSync("./git-diff-script-exclusions.conf.json").toString()
       );
       return {
         ...fileContents,
@@ -21,7 +21,7 @@ const exception = (SOURCE: string, TARGET: string): void => {
       };
     } catch (err) {
       console.log(
-        "ERROR : You have to create the file exceptions.conf.json with your exceptions\n"
+        "ERROR : You have to create the file git-diff-script-exclusions.conf.json with your exceptions\n"
       );
     }
   };
@@ -60,7 +60,9 @@ const exception = (SOURCE: string, TARGET: string): void => {
       }
     );
   } else {
-    console.log("ERROR : You have to add exceptions in exceptions.conf.json\n");
+    console.log(
+      "ERROR : You have to add exceptions in git-diff-script-exclusions.conf.json\n"
+    );
   }
 };
 

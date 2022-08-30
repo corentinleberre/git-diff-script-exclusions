@@ -1,0 +1,3 @@
+{
+  "exceptions": ["docs/*", "git-diff-script-exclusions.conf.json"]
+}

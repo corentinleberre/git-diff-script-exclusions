@@ -1,6 +1,6 @@
 {
   "name": "git-diff-script-exclusions",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "scripts": {
     "dev": "ts-node src/main.ts",
     "prettify": "prettier --write .",

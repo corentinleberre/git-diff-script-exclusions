@@ -14,7 +14,8 @@ This tool has to be used in a git repo.
 
 ### Configure :
 
-Exceptions are stored in the file `git-diff-script-exclusions.conf.json`. It follow the format below :
+Exceptions are stored in the file `git-diff-script-exclusions.conf.json`. 
+It follow the format below 👇
 
 ```json
     {
@@ -30,14 +31,14 @@ Paths can be folders or files.
 
 ### Install and use
 
-Install globally :
+Install globally 👇
 
 ```bash
 $: npm install -g git-diff-script-exclusions
 $: npm exec git-diff-script-exclusions --source source_commit_sha --target targe_commit_sha
 ```
 
-Use via Npx :
+Or use via Npx 👇
 
 ```bash
 $: npx git-diff-script-exclusions --source source_commit_sha --target targe_commit_sha
@@ -47,7 +48,7 @@ Use `--help` if needed.
 
 _You can use commit SHA or branch name_
 
-The CLI will return :
+The CLI will return 👇
 
 ```
 |============================================================|
@@ -76,13 +77,64 @@ _You can use `grep` to pipe `git-diff-script-exclusions` with other CLI tools._
 
 #### Gitlab
 
-TODO
+```toml
+stages:
+  - test
+
+test:
+  stage: test
+  image:
+    name: node:lts
+  script:
+    - npm install -g git-diff-script-exclusions
+    - echo 'Checking if tests need to be executed...'
+    - GIT_DIFF_SCRIPT_EXCLUSIONS=$(npx git-diff-script-exclusions --source $CI_COMMIT_SHA)
+    - echo $GIT_DIFF_SCRIPT_EXCLUSIONS
+    - >
+      if grep -q "onlyExceptions: true" <<< "$GIT_DIFF_SCRIPT_EXCLUSIONS"; then
+        echo 'Tests are not required';
+      else
+        echo 'Launching tests...';
+        npm ci
+        npm test
+      fi;
+```
 
 #### Github
 
-TODO
+```toml
+name: Run Test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install dependencies
+      run: npm install -g git-diff-script-exclusions
+    - name: Launch tests if needed
+      run: |
+        echo "Checking if tests need to be executed..."
+        GIT_DIFF_SCRIPT_EXCLUSIONS=$(npx git-diff-script-exclusions --source $GITHUB_REF)
+        echo $GIT_DIFF_SCRIPT_EXCLUSIONS
+        if grep -q "onlyExceptions: true" <<< "$GIT_DIFF_SCRIPT_EXCLUSIONS"; then
+          echo "Tests are not required"
+        else
+          echo "Launching tests..."
+          npm ci
+          npm test
+        fi
+```
 
 ## Contribute
+
+We welcome contributions to this project! If you have an idea for a new feature or a bug fix, please open an issue on our GitHub page before submitting a pull request. Thank you for your contribution!
+
+To launch the project in development use this command 👇
 
 ```bash
 $: npm run dev
@@ -90,4 +142,4 @@ $: npm run dev
 
 ## License
 
-git-diff-script-exclusions is available under the MIT license.
+[git-diff-script-exclusions](/LICENSE) is available under the MIT license.

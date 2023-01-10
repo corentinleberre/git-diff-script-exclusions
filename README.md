@@ -1,8 +1,8 @@
 # git-diff-script-exclusions
 
-> Never run your CI unnecessarily again.
+Never run your CI unnecessarily again.
 
-`Git-diff-script-exclusions` is a CLI tool which allows to compare two git commits and see if modified files are strictly limited to excluded path that you have configured.
+> **Git-diff-script-exclusions** is a CLI tool which allows to compare two git commits and see if modified files are strictly limited to excluded path that you have configured.
 
 _Can be used to determine if a complex operation like launching tests in a CI context is required regarding modified files._
 

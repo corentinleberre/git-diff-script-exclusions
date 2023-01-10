@@ -1,5 +1,7 @@
 # git-diff-script-exclusions
 
+> Never run your CI unnecessarily again.
+
 `Git-diff-script-exclusions` is a CLI tool which allows to compare two git commits and see if modified files are strictly limited to excluded path that you have configured.
 
 _Can be used to determine if a complex operation like launching tests in a CI context is required regarding modified files._
@@ -12,9 +14,9 @@ This tool has to be used in a git repo.
 
 - Node (tested on v14 and v16)
 
-### Configure :
+### Configure
 
-Exceptions are stored in the file `git-diff-script-exclusions.conf.json`. 
+Exceptions are stored in the file `git-diff-script-exclusions.conf.json`.
 It follow the format below 👇
 
 ```json
@@ -50,7 +52,7 @@ _You can use commit SHA or branch name_
 
 The CLI will return 👇
 
-```
+```bash
 |============================================================|
 | $: npx git-diff-script-exclusions -- -s my_feature -t main |
 |============================================================|
@@ -77,7 +79,7 @@ _You can use `grep` to pipe `git-diff-script-exclusions` with other CLI tools._
 
 #### Gitlab
 
-```toml
+```yaml
 stages:
   - test
 
@@ -102,7 +104,7 @@ test:
 
 #### Github
 
-```toml
+```yaml
 name: Run Test
 
 jobs:
